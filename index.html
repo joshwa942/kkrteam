@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>KKRIPL.COM — VIP Casino</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── EXACT KKRIPL SKIN VARIABLES ── */
+:root{
+  --bg1:#0A0A0A;
+  --bg2:#1A1A1A;
+  --bg3:#262626;
+  --bg4:#232323;
+  --border:#333333;
+  --border2:#444444;
+  --primary:#D1AE52;
+  --primary-light:#E9CA78;
+  --primary-dark:#C39949;
+  --primary-dim:#D1AE5222;
+  --primary-dim2:#D1AE5244;
+  --accent1:#04BE02;
+  --accent2:#EA4E3D;
+  --accent3:#FFAA09;
+  --lead:#E3E3E3;
+  --neutral1:#999999;
+  --neutral2:#666666;
+  --neutral3:#444444;
+  --text-primary:#703904;
+  --left-bg:#262626;
+  --topnav:#1A1A1A;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{width:100%;height:100%;background:var(--bg1);color:var(--lead);font-family:'Poppins',sans-serif;overflow:hidden}
+::-webkit-scrollbar{width:3px;height:3px}
+::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+
+/* ══════════ AUTH OVERLAY ══════════ */
+#auth{position:fixed;inset:0;z-index:900;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,0.92);backdrop-filter:blur(6px);transition:opacity .4s}
+#auth.out{opacity:0;pointer-events:none}
+
+.auth-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;
+  width:380px;max-width:96vw;overflow:hidden;animation:slideUp .5s ease both;
+  box-shadow:0 32px 80px rgba(0,0,0,.8)}
+@keyframes slideUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+
+.ac-top{background:linear-gradient(135deg,var(--primary-dark),var(--primary),var(--primary-light));
+  padding:28px 24px 20px;text-align:center;position:relative;overflow:hidden}
+.ac-top::before{content:'🎰';position:absolute;right:-10px;top:-10px;font-size:90px;opacity:.1;line-height:1}
+.ac-logo{font-size:30px;font-weight:800;color:var(--bg1);letter-spacing:2px;margin-bottom:4px}
+.ac-slogan{font-size:12px;color:rgba(0,0,0,.65);font-weight:600;letter-spacing:.5px}
+.ac-bonus{display:inline-block;background:rgba(0,0,0,.15);border-radius:20px;
+  padding:4px 14px;font-size:11px;font-weight:700;color:var(--bg1);margin-top:8px}
+
+.ac-tabs{display:flex;background:var(--bg1);border-bottom:1px solid var(--border)}
+.ac-tab{flex:1;padding:12px;border:none;background:none;color:var(--neutral1);
+  font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;cursor:pointer;
+  border-bottom:2px solid transparent;transition:all .2s}
+.ac-tab.on{color:var(--primary);border-bottom-color:var(--primary)}
+
+.ac-body{padding:22px 24px}
+.fg{margin-bottom:14px}
+.fg label{display:block;font-size:11px;color:var(--neutral1);text-transform:uppercase;
+  letter-spacing:1px;margin-bottom:6px;font-weight:600}
+.fg input{width:100%;padding:11px 14px;background:var(--bg1);border:1px solid var(--border);
+  border-radius:9px;color:var(--lead);font-family:'Poppins',sans-serif;font-size:14px;
+  font-weight:500;outline:none;transition:border-color .2s}
+.fg input:focus{border-color:var(--primary)}
+.ph-row{display:flex;gap:8px}
+.cc{padding:11px 12px;background:var(--bg1);border:1px solid var(--border);border-radius:9px;
+  color:var(--primary);font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;white-space:nowrap}
+
+.btn-gold{width:100%;padding:13px;border:none;border-radius:10px;
+  background:linear-gradient(135deg,var(--primary-dark),var(--primary),var(--primary-light));
+  color:var(--bg1);font-family:'Poppins',sans-serif;font-size:15px;font-weight:800;
+  cursor:pointer;transition:all .2s;letter-spacing:.5px;margin-top:4px}
+.btn-gold:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(209,174,82,.35)}
+
+.otp-row{display:flex;gap:8px;justify-content:center;margin:14px 0}
+.ob{width:50px;height:52px;background:var(--bg1);border:2px solid var(--border);border-radius:9px;
+  text-align:center;font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;
+  color:var(--lead);outline:none;transition:border-color .2s}
+.ob:focus{border-color:var(--primary)}
+.otp-info{text-align:center;font-size:12px;color:var(--neutral1);margin-bottom:12px}
+.otp-info span{color:var(--primary);font-weight:700;font-family:'JetBrains Mono',monospace}
+.resend{color:var(--primary);cursor:pointer;font-weight:700;display:none}
+.step-dots{display:flex;justify-content:center;gap:6px;margin-bottom:16px}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--border2);transition:all .3s}
+.dot.on{background:var(--primary);width:18px;border-radius:3px}
+.ac-links{display:flex;justify-content:space-between;margin-top:12px;font-size:12px}
+.alk{color:var(--primary);cursor:pointer;font-weight:600;background:none;border:none;
+  font-family:'Poppins',sans-serif;font-size:12px}
+.success-sc{text-align:center;padding:8px 0}
+.s-ico{font-size:52px;margin-bottom:12px}
+.s-tit{font-size:18px;font-weight:800;margin-bottom:6px;color:var(--lead)}
+.s-sub{font-size:12px;color:var(--neutral1);line-height:1.6;margin-bottom:18px}
+.s-bonus-pill{display:inline-block;background:var(--primary-dim2);border:1px solid var(--primary-dim2);
+  color:var(--primary);border-radius:20px;padding:5px 14px;font-size:12px;font-weight:700;margin-bottom:14px}
+
+/* ── FORGOT PASSWORD ── */
+#fp-ov{position:fixed;inset:0;z-index:950;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.85);backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .3s}
+#fp-ov.open{opacity:1;pointer-events:all}
+.fp-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;
+  padding:28px 24px;width:370px;max-width:96vw;position:relative;animation:slideUp .4s ease both}
+.fp-x{position:absolute;top:12px;right:16px;background:none;border:none;color:var(--neutral1);font-size:20px;cursor:pointer}
+.fp-x:hover{color:var(--accent2)}
+
+/* ══════════ APP ══════════ */
+#app{display:none;width:100%;height:100%;flex-direction:column}
+#app.on{display:flex}
+
+/* TOP NAV */
+.topnav{height:52px;background:var(--topnav);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;padding:0 14px;gap:10px;flex-shrink:0;position:relative;z-index:50}
+.tn-logo{font-size:20px;font-weight:800;letter-spacing:1px;
+  background:linear-gradient(135deg,var(--primary-dark),var(--primary-light));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  white-space:nowrap;margin-right:6px}
+.tn-search{flex:1;display:flex;align-items:center;gap:8px;background:var(--bg1);
+  border:1px solid var(--border);border-radius:20px;padding:6px 12px;max-width:280px}
+.tn-search input{flex:1;background:none;border:none;outline:none;color:var(--lead);
+  font-family:'Poppins',sans-serif;font-size:13px}
+.tn-search input::placeholder{color:var(--neutral2)}
+.search-ico{color:var(--primary);font-size:15px}
+.tn-right{display:flex;align-items:center;gap:8px;margin-left:auto}
+.bal-box{background:var(--bg1);border:1px solid var(--border);border-radius:8px;
+  padding:5px 10px;text-align:right}
+.bal-lbl{font-size:9px;color:var(--neutral1);text-transform:uppercase;letter-spacing:.5px}
+.bal-amt{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;color:var(--primary)}
+.dep-btn-top{padding:6px 14px;background:linear-gradient(135deg,var(--primary-dark),var(--primary));
+  border:none;border-radius:8px;color:var(--bg1);font-family:'Poppins',sans-serif;
+  font-size:12px;font-weight:800;cursor:pointer;white-space:nowrap}
+.av-btn{width:32px;height:32px;border-radius:50%;
+  background:linear-gradient(135deg,var(--primary-dark),var(--primary-light));
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;
+  color:var(--bg1);cursor:pointer;flex-shrink:0}
+
+/* BODY SPLIT */
+.app-body{display:flex;flex:1;overflow:hidden}
+
+/* LEFT SIDEBAR */
+.lsb{width:64px;background:var(--left-bg);border-right:1px solid var(--border);
+  display:flex;flex-direction:column;align-items:center;padding:8px 0;gap:2px;
+  overflow-y:auto;flex-shrink:0}
+.lsb-item{display:flex;flex-direction:column;align-items:center;gap:3px;
+  padding:10px 4px;cursor:pointer;border-radius:10px;width:56px;transition:all .2s;
+  border-left:2px solid transparent}
+.lsb-item:hover{background:rgba(209,174,82,.06)}
+.lsb-item.on{background:rgba(209,174,82,.1);border-left-color:var(--primary)}
+.lsb-ico{font-size:20px;line-height:1}
+.lsb-txt{font-size:9px;color:var(--neutral1);font-weight:600;text-align:center;letter-spacing:.2px}
+.lsb-item.on .lsb-txt{color:var(--primary)}
+
+/* MAIN SCROLL */
+.main-scroll{flex:1;overflow-y:auto;overflow-x:hidden;background:var(--bg1)}
+
+/* TICKER */
+.ticker-wrap{background:var(--bg2);border-bottom:1px solid var(--border);height:28px;overflow:hidden;display:flex;align-items:center}
+.ticker-inner{display:flex;animation:tickR 38s linear infinite;white-space:nowrap}
+.ti{font-size:10px;padding:0 18px;border-right:1px solid var(--border);font-family:'JetBrains Mono',monospace;display:flex;align-items:center;gap:5px}
+.ti-l{color:var(--neutral1)} .ti-u{color:var(--accent1)} .ti-d{color:var(--accent2)}
+@keyframes tickR{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* BANNER CAROUSEL */
+.banner-wrap{padding:10px 10px 6px;position:relative;overflow:hidden}
+.banner-track{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px}
+.banner-track::-webkit-scrollbar{height:0}
+.bn{flex-shrink:0;width:calc(100% - 20px);max-width:560px;height:130px;border-radius:12px;
+  position:relative;overflow:hidden;cursor:pointer;scroll-snap-align:start}
+.bn:hover{transform:scale(1.01);transition:transform .2s}
+.bn1{background:linear-gradient(135deg,#1a0e00,#3d2400,#5a3400)}
+.bn2{background:linear-gradient(135deg,#0a0a1a,#161630,#1e1e4a)}
+.bn3{background:linear-gradient(135deg,#0a1a0a,#0d3010,#104018)}
+.bn4{background:linear-gradient(135deg,#1a0a0a,#381010,#500a0a)}
+.bn-bg{position:absolute;right:-15px;top:-15px;font-size:100px;opacity:.15;line-height:1}
+.bn-body{position:relative;z-index:1;padding:16px 18px}
+.bn-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.bn-title{font-size:18px;font-weight:800;margin-bottom:4px;color:var(--lead)}
+.bn-sub{font-size:11px;color:rgba(255,255,255,.5);margin-bottom:10px}
+.bn-cta{display:inline-block;padding:5px 14px;border-radius:6px;font-size:11px;font-weight:800;border:none;cursor:pointer;letter-spacing:.5px}
+.cta-gold{background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:var(--bg1)}
+.cta-green{background:var(--accent1);color:#000}
+.cta-blue{background:#1a6fff;color:#fff}
+.cta-red{background:var(--accent2);color:#fff}
+.banner-dots{display:flex;justify-content:center;gap:5px;margin-top:6px}
+.bd{width:6px;height:6px;border-radius:50%;background:var(--border2);transition:all .3s;cursor:pointer}
+.bd.on{background:var(--primary);width:18px;border-radius:3px}
+
+/* GAME CATEGORY FILTER */
+.cat-filter{display:flex;gap:6px;padding:8px 10px;overflow-x:auto;background:var(--bg2);border-bottom:1px solid var(--border)}
+.cat-filter::-webkit-scrollbar{height:0}
+.cf{display:flex;align-items:center;gap:5px;padding:6px 14px;border-radius:20px;
+  border:1px solid var(--border);background:none;color:var(--neutral1);
+  font-family:'Poppins',sans-serif;font-size:12px;font-weight:600;cursor:pointer;
+  white-space:nowrap;transition:all .2s;flex-shrink:0}
+.cf:hover{border-color:var(--primary-dim2);color:var(--lead)}
+.cf.on{background:var(--primary-dim);border-color:var(--primary);color:var(--primary)}
+.cf-ico{font-size:14px}
+
+/* SECTIONS */
+.sec{display:none;padding:0 0 70px}
+.sec.on{display:block}
+.sec-hdr{display:flex;align-items:center;justify-content:space-between;padding:14px 12px 8px}
+.sec-ttl{font-size:14px;font-weight:700;display:flex;align-items:center;gap:6px}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--accent2);display:inline-block;animation:blink 1s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.see-all{font-size:11px;color:var(--primary);font-weight:700;cursor:pointer;background:none;border:none;font-family:'Poppins',sans-serif;display:flex;align-items:center;gap:3px}
+
+/* JACKPOT DISPLAY */
+.jp-bar{background:linear-gradient(90deg,var(--bg2),#1a1200,var(--bg2));
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:10px 14px;display:flex;align-items:center;justify-content:space-between;margin-bottom:2px}
+.jp-lbl{font-size:10px;color:var(--neutral1);text-transform:uppercase;letter-spacing:1.5px;font-weight:600}
+.jp-val{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:var(--primary);
+  text-shadow:0 0 20px rgba(209,174,82,.4)}
+.jp-ico{font-size:22px;animation:jpPulse 2s ease infinite}
+@keyframes jpPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+
+/* GAME GRID — lobby style */
+.game-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 10px 10px}
+.game-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;
+  overflow:hidden;cursor:pointer;transition:all .22s;position:relative}
+.game-card:hover{border-color:var(--primary-dim2);transform:translateY(-3px);box-shadow:0 8px 24px rgba(209,174,82,.15)}
+.gc-thumb{height:90px;display:flex;align-items:center;justify-content:center;font-size:46px;
+  position:relative;overflow:hidden}
+.gc1{background:linear-gradient(145deg,#1a0e00,#2e1a00)} .gc2{background:linear-gradient(145deg,#0a0a1a,#12122a)}
+.gc3{background:linear-gradient(145deg,#0a1a0a,#0e2e0e)} .gc4{background:linear-gradient(145deg,#1a0a1a,#281028)}
+.gc5{background:linear-gradient(145deg,#0a1020,#101e38)} .gc6{background:linear-gradient(145deg,#1a0808,#300808)}
+.gc7{background:linear-gradient(145deg,#0e1a10,#163018)} .gc8{background:linear-gradient(145deg,#1a1a0a,#2a2810)}
+.gc9{background:linear-gradient(145deg,#100a1a,#1e0e2e)} .gc10{background:linear-gradient(145deg,#0a1a18,#0e2a28)}
+.gc11{background:linear-gradient(145deg,#1a0e0a,#2e1a10)} .gc12{background:linear-gradient(145deg,#0a0a0a,#1a1a1a)}
+.gc-badge{position:absolute;top:6px;right:6px;font-size:9px;font-weight:800;padding:2px 7px;
+  border-radius:4px;text-transform:uppercase;letter-spacing:.5px}
+.bdg-hot{background:var(--accent2);color:#fff}
+.bdg-new{background:var(--accent1);color:#000}
+.bdg-jp{background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:var(--bg1)}
+.bdg-live{background:var(--accent2);color:#fff;animation:blink 1.2s ease infinite}
+.gc-info{padding:8px 10px}
+.gc-name{font-size:11px;font-weight:700;color:var(--lead);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px}
+.gc-meta{font-size:10px;color:var(--neutral1)}
+.gc-rtp{color:var(--accent1);font-weight:600}
+
+/* SPORTS ODDS */
+.odds-block{background:var(--bg2);border:1px solid var(--border);border-radius:10px;margin:0 10px 8px;overflow:hidden}
+.ob-hdr{display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--bg3);border-bottom:1px solid var(--border)}
+.ob-sport{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:2px 7px;border-radius:4px;flex-shrink:0}
+.sp-c{background:rgba(4,190,2,.12);color:var(--accent1)} .sp-f{background:rgba(26,111,255,.12);color:#7ab4ff}
+.sp-k{background:rgba(255,170,9,.12);color:var(--accent3)} .sp-t{background:rgba(234,78,61,.12);color:var(--accent2)}
+.ob-title{font-size:12px;font-weight:700;flex:1;color:var(--lead)}
+.ob-time{font-size:10px;color:var(--neutral2);font-family:'JetBrains Mono',monospace}
+.ob-live{font-size:9px;color:var(--accent2);background:rgba(234,78,61,.1);padding:2px 7px;border-radius:10px;font-weight:700;animation:blink 1.5s ease infinite}
+.odds-row{display:flex;align-items:center;padding:10px 12px;border-bottom:1px solid rgba(51,51,51,.5);gap:8px}
+.odds-row:last-child{border-bottom:none}
+.or-team{flex:1}
+.or-name{font-size:12px;font-weight:600;color:var(--lead)}
+.or-sub{font-size:10px;color:var(--neutral2);margin-top:1px}
+.odd-btns{display:flex;gap:5px}
+.odd-btn{min-width:60px;padding:6px 6px;border-radius:7px;border:1px solid var(--border2);
+  background:var(--bg3);cursor:pointer;text-align:center;transition:all .2s;flex-shrink:0}
+.odd-btn:hover{border-color:var(--primary-dim2);background:var(--primary-dim);transform:translateY(-1px)}
+.odd-btn.on{border-color:var(--primary);background:var(--primary-dim)}
+.od-lbl{font-size:9px;color:var(--neutral2);text-transform:uppercase;letter-spacing:.3px}
+.od-val{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;color:var(--lead)}
+.od-val.fav{color:var(--primary)}
+.sc-badge{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent1);
+  background:rgba(4,190,2,.08);padding:3px 8px;border-radius:5px;white-space:nowrap}
+
+/* LIVE CARDS */
+.live-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 10px 8px}
+.lc{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:12px;
+  cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+.lc:hover{border-color:var(--primary-dim2);transform:translateY(-2px)}
+.lc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent2),transparent)}
+.lc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.lc-sport{font-size:10px;color:var(--neutral1);font-weight:600}
+.lc-pill{font-size:9px;color:var(--accent2);background:rgba(234,78,61,.1);padding:2px 7px;border-radius:10px;font-weight:700;animation:blink 1.2s ease infinite}
+.lc-teams{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.lc-team{text-align:center}
+.lc-tn{font-size:11px;font-weight:700;color:var(--lead)}
+.lc-sc{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:800;color:var(--primary)}
+.lc-vs{font-size:10px;color:var(--neutral2);font-weight:700}
+.lc-meta{font-size:10px;color:var(--neutral2);text-align:center;margin-bottom:8px}
+.lc-odds{display:flex;gap:5px}
+.lco{flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:5px 4px;text-align:center;cursor:pointer;transition:all .2s}
+.lco:hover{border-color:var(--primary-dim2);background:var(--primary-dim)}
+.lco-l{font-size:9px;color:var(--neutral2)} .lco-v{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:var(--lead)}
+
+/* PROMO CARDS */
+.promo-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 10px 8px}
+.promo-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:all .2s}
+.promo-card:hover{border-color:var(--primary-dim2);transform:translateY(-2px)}
+.pc-top{padding:14px;position:relative;overflow:hidden}
+.pc-bg-ico{position:absolute;right:-8px;top:-8px;font-size:70px;opacity:.12;line-height:1}
+.pc-tag{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px}
+.pc-title{font-size:14px;font-weight:800;margin-bottom:3px}
+.pc-sub{font-size:10px;color:rgba(255,255,255,.45)}
+.pc-body{padding:10px 14px;background:var(--bg3);border-top:1px solid var(--border)}
+.pc-detail{font-size:11px;color:var(--neutral1);margin-bottom:8px;line-height:1.5}
+.pc-btn{width:100%;padding:8px;border:none;border-radius:7px;font-family:'Poppins',sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s}
+
+/* WALLET SECTION */
+.wallet-hero{background:linear-gradient(145deg,#141000,#1e1800,#2a2200);
+  border:1px solid rgba(209,174,82,.2);border-radius:12px;padding:20px;margin:10px;
+  position:relative;overflow:hidden}
+.wallet-hero::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;
+  background:radial-gradient(circle,rgba(209,174,82,.1),transparent 70%)}
+.wh-lbl{font-size:10px;color:var(--neutral1);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;font-weight:600}
+.wh-amt{font-family:'JetBrains Mono',monospace;font-size:36px;font-weight:700;color:var(--primary);line-height:1}
+.wh-sub{font-size:11px;color:var(--neutral2);margin-top:6px}
+.wh-badges{display:flex;gap:7px;margin-top:10px;flex-wrap:wrap}
+.wbdg{padding:3px 10px;border-radius:14px;font-size:10px;font-weight:700;letter-spacing:.3px}
+.bdg-g{background:rgba(209,174,82,.12);color:var(--primary);border:1px solid rgba(209,174,82,.2)}
+.bdg-id{background:rgba(255,255,255,.04);color:var(--neutral1);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:10px}
+
+.wit-limit{background:rgba(234,78,61,.06);border:1px solid rgba(234,78,61,.2);border-radius:9px;
+  padding:10px 14px;margin:0 10px 10px;font-size:11px}
+.wl-title{font-weight:700;color:var(--accent2);margin-bottom:6px;display:flex;align-items:center;gap:5px}
+.wl-rows{display:flex;flex-direction:column;gap:4px}
+.wl-row{display:flex;justify-content:space-between;font-size:11px;color:var(--neutral2)}
+.wl-row span{color:var(--lead);font-family:'JetBrains Mono',monospace;font-weight:600;font-size:11px}
+
+.wform{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px;margin:0 10px 10px}
+.wf-ttl{font-size:13px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.presets{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:11px}
+.pb{padding:5px 12px;border:1px solid var(--border);border-radius:6px;background:none;
+  color:var(--neutral1);font-family:'JetBrains Mono',monospace;font-size:11px;cursor:pointer;transition:all .2s}
+.pb:hover{border-color:var(--primary);color:var(--primary)}
+.pb.on{border-color:var(--primary);background:var(--primary-dim);color:var(--primary)}
+.inp-r{display:flex;gap:7px;margin-bottom:11px;align-items:stretch}
+.ctag{padding:10px 12px;background:var(--bg1);border:1px solid var(--border);border-radius:8px;
+  color:var(--primary);font-family:'Poppins',sans-serif;font-size:17px;font-weight:800;display:flex;align-items:center}
+.inp-r input{flex:1;padding:10px 12px;background:var(--bg1);border:1px solid var(--border);
+  border-radius:8px;color:var(--lead);font-family:'JetBrains Mono',monospace;font-size:14px;outline:none;transition:border-color .2s}
+.inp-r input:focus{border-color:var(--primary)}
+.meth-g{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:11px}
+.mc{padding:9px 6px;border:1px solid var(--border);border-radius:8px;background:var(--bg1);
+  cursor:pointer;text-align:center;transition:all .2s;font-size:11px;color:var(--neutral1);font-weight:600}
+.mc:hover,.mc.on{border-color:var(--primary-dim2);color:var(--lead);background:var(--primary-dim)}
+.mc-ico{font-size:16px;margin-bottom:3px}
+.mc-pop{font-size:8px;color:var(--primary);font-weight:700;letter-spacing:.3px}
+.btn-g2{width:100%;padding:11px;border:none;border-radius:9px;
+  background:linear-gradient(135deg,var(--primary-dark),var(--primary),var(--primary-light));
+  color:var(--bg1);font-family:'Poppins',sans-serif;font-size:13px;font-weight:800;cursor:pointer;transition:all .2s}
+.btn-g2:hover{box-shadow:0 4px 16px rgba(209,174,82,.3);transform:translateY(-1px)}
+.btn-g2.out{background:none;border:1px solid var(--border);color:var(--lead)}
+.btn-g2.out:hover{border-color:var(--primary);background:var(--primary-dim)}
+
+.tx-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px 14px 8px;margin:0 10px 10px}
+.tx-item{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid rgba(51,51,51,.4)}
+.tx-item:last-child{border-bottom:none}
+.txl{display:flex;align-items:center;gap:8px}
+.tx-ico{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.txi-d{background:rgba(4,190,2,.1)} .txi-w{background:rgba(234,78,61,.1)}
+.tx-n{font-size:12px;font-weight:600} .tx-d{font-size:10px;color:var(--neutral2);margin-top:1px}
+.tx-a{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700}
+.ta-d{color:var(--accent1)} .ta-w{color:var(--accent2)}
+
+/* LEADERBOARD */
+.lb-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:10px;margin:0 10px 10px;overflow:hidden}
+.lb-hd,.lb-rw{display:grid;grid-template-columns:44px 1fr 60px 80px 100px;padding:10px 12px;align-items:center;gap:4px}
+.lb-hd{background:var(--bg3);font-size:9px;text-transform:uppercase;letter-spacing:1px;color:var(--neutral2);font-weight:700;border-bottom:1px solid var(--border)}
+.lb-rw{border-bottom:1px solid rgba(51,51,51,.3);font-size:12px;transition:background .2s}
+.lb-rw:hover{background:rgba(209,174,82,.03)}
+.lb-rw.me{background:rgba(209,174,82,.04);border-left:2px solid var(--primary)}
+.rnk{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:800;color:var(--neutral2)}
+.rk1 .rnk{color:var(--primary)} .rk2 .rnk{color:#b0bcd0} .rk3 .rnk{color:#cd7c3b}
+.pflex{display:flex;align-items:center;gap:7px}
+.pav{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px;color:#000;flex-shrink:0}
+.pname{font-size:11px;font-weight:700;color:var(--lead)}
+.pid{font-size:9px;color:var(--neutral2);font-family:'JetBrains Mono',monospace}
+.me-tag{font-size:8px;color:var(--primary);background:rgba(209,174,82,.1);padding:1px 5px;border-radius:3px;margin-left:4px;font-weight:700}
+.wr-t{font-family:'JetBrains Mono',monospace;font-size:11px}
+.pft{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--accent1)}
+
+/* SLOT MODAL */
+#sm-ov{position:fixed;inset:0;z-index:800;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.88);backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:opacity .3s}
+#sm-ov.open{opacity:1;pointer-events:all}
+.sm-box{background:var(--bg2);border:1px solid rgba(209,174,82,.25);border-radius:18px;
+  padding:24px 22px;width:420px;max-width:95vw;text-align:center;position:relative;animation:slideUp .4s ease both}
+.sm-x{position:absolute;top:12px;right:14px;background:none;border:none;color:var(--neutral1);font-size:20px;cursor:pointer}
+.sm-x:hover{color:var(--accent2)}
+.sm-gname{font-size:18px;font-weight:800;margin-bottom:4px;color:var(--lead)}
+.sm-bal-row{font-size:12px;color:var(--neutral1);margin-bottom:14px}
+.sm-bal-row span{color:var(--primary);font-family:'JetBrains Mono',monospace;font-weight:700}
+.jp-box{background:linear-gradient(90deg,rgba(209,174,82,.06),rgba(255,170,9,.04));
+  border:1px solid rgba(209,174,82,.15);border-radius:8px;padding:8px 14px;margin-bottom:14px}
+.jp-box-l{font-size:9px;color:var(--neutral2);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px}
+.jp-box-v{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:var(--primary)}
+.reels{display:flex;gap:8px;justify-content:center;margin-bottom:16px}
+.reel{width:80px;height:80px;background:var(--bg1);border:2px solid var(--border2);border-radius:10px;
+  display:flex;align-items:center;justify-content:center;font-size:38px;transition:border-color .3s}
+.reel.win{border-color:var(--primary);box-shadow:0 0 16px rgba(209,174,82,.3)}
+.reel.spin{animation:spinR .08s linear infinite}
+@keyframes spinR{0%{transform:translateY(0)}50%{transform:translateY(-4px)}100%{transform:translateY(0)}}
+.bet-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:14px}
+.b-adj{width:34px;height:34px;border:1px solid var(--border2);border-radius:7px;
+  background:var(--bg3);color:var(--lead);font-size:18px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:all .2s}
+.b-adj:hover{border-color:var(--primary)}
+.bet-disp{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700;color:var(--primary);
+  background:var(--bg1);border:1px solid var(--border);border-radius:7px;padding:6px 16px;min-width:100px}
+.spin-btn{padding:12px 32px;background:linear-gradient(135deg,var(--primary-dark),var(--primary),var(--primary-light));
+  border:none;border-radius:10px;color:var(--bg1);font-family:'Poppins',sans-serif;
+  font-size:16px;font-weight:800;cursor:pointer;transition:all .2s;letter-spacing:.5px}
+.spin-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 6px 20px rgba(209,174,82,.35)}
+.spin-btn:disabled{opacity:.5;cursor:not-allowed}
+.sm-res{min-height:30px;font-size:14px;font-weight:700;margin-top:12px;padding:5px;border-radius:7px}
+.sm-win{color:var(--primary);background:rgba(209,174,82,.08)}
+.sm-loss{color:var(--neutral2);background:rgba(255,255,255,.03)}
+
+/* BET SLIP */
+.betslip{background:var(--bg2);border-top:1px solid var(--border);padding:8px 12px;
+  display:flex;align-items:center;gap:8px;flex-shrink:0}
+.bs-lbl{font-size:11px;color:var(--neutral1);font-weight:600;white-space:nowrap}
+.bs-cnt{background:var(--primary);color:var(--bg1);border-radius:50%;width:18px;height:18px;
+  display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800}
+.bs-items{flex:1;display:flex;gap:6px;overflow-x:auto}
+.bs-items::-webkit-scrollbar{height:0}
+.bs-chip{background:var(--bg3);border:1px solid var(--border);border-radius:6px;
+  padding:4px 10px;white-space:nowrap;font-size:11px;font-weight:600;display:flex;align-items:center;gap:5px}
+.bs-chip .bco{color:var(--primary);font-family:'JetBrains Mono',monospace;font-weight:700}
+.bs-chip .bcx{color:var(--neutral2);cursor:pointer} .bs-chip .bcx:hover{color:var(--accent2)}
+.place-btn{padding:7px 16px;background:linear-gradient(135deg,var(--primary-dark),var(--primary));
+  border:none;border-radius:8px;color:var(--bg1);font-family:'Poppins',sans-serif;
+  font-size:12px;font-weight:800;cursor:pointer;white-space:nowrap;transition:all .2s}
+.place-btn:hover{box-shadow:0 4px 14px rgba(209,174,82,.3)}
+
+/* BOTTOM NAV */
+.btmnav{height:56px;background:var(--bg2);border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-around;flex-shrink:0;padding:0 4px}
+.bn-item{display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;
+  padding:6px 10px;border-radius:8px;transition:all .2s;flex:1;position:relative}
+.bn-item:hover{background:rgba(209,174,82,.04)}
+.bn-item.on .bn-ico,.bn-item.on .bn-txt{color:var(--primary)}
+.bn-ico{font-size:20px;color:var(--neutral1);transition:color .2s}
+.bn-txt{font-size:9px;color:var(--neutral1);font-weight:600;letter-spacing:.3px;transition:color .2s}
+.bn-badge{position:absolute;top:4px;right:8px;background:var(--accent2);color:#fff;
+  border-radius:50%;width:14px;height:14px;display:flex;align-items:center;justify-content:center;
+  font-size:8px;font-weight:800}
+
+/* TOAST */
+#toast{position:fixed;bottom:70px;left:50%;transform:translateX(-50%) translateY(10px);
+  background:var(--bg2);border:1px solid var(--primary);border-radius:8px;
+  padding:10px 18px;font-size:12px;font-weight:700;color:var(--primary);
+  box-shadow:0 8px 24px rgba(209,174,82,.2);z-index:999;opacity:0;
+  transition:all .3s;pointer-events:none;white-space:nowrap}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media(min-width:600px){
+  .game-grid{grid-template-columns:repeat(4,1fr)}
+  .live-grid{grid-template-columns:repeat(3,1fr)}
+  .promo-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(min-width:900px){
+  .game-grid{grid-template-columns:repeat(5,1fr)}
+  .lsb{width:72px}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ AUTH ══════════ -->
+<div id="auth">
+  <div class="auth-card">
+    <div class="ac-top">
+      <div class="ac-bg-ico" style="position:absolute;right:-10px;top:-10px;font-size:90px;opacity:.1">🎰</div>
+      <div class="ac-logo">KKRIPL</div>
+      <div class="ac-slogan">🎉 Welcome — Open the door to wealth ✅</div>
+      <div class="ac-bonus">💸 Get ₹8,888 for FREE on signup!</div>
+    </div>
+    <div class="ac-tabs">
+      <button class="ac-tab on" onclick="authTab('login',this)">Login</button>
+      <button class="ac-tab" onclick="authTab('register',this)">Register</button>
+    </div>
+    <div class="ac-body">
+      <!-- LOGIN -->
+      <div id="pane-login">
+        <div class="fg"><label>Mobile / Username</label><input type="text" id="l-u" placeholder="Mobile number or username" value="rahul_betpro"></div>
+        <div class="fg"><label>Password</label><input type="password" id="l-p" placeholder="••••••••" value="India@123"></div>
+        <button class="btn-gold" onclick="doLogin()">🔐 Login Now</button>
+        <div class="ac-links">
+          <button class="alk" onclick="openFP()">Forgot Password?</button>
+          <span style="font-size:11px;color:var(--neutral2)">Demo — just click Login!</span>
+        </div>
+      </div>
+      <!-- REGISTER -->
+      <div id="pane-reg" style="display:none">
+        <div id="rs1">
+          <div class="step-dots"><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div>
+          <div class="fg"><label>Full Name</label><input type="text" id="r-n" placeholder="Your full name"></div>
+          <div class="fg"><label>Mobile</label><div class="ph-row"><div class="cc">🇮🇳 +91</div><input type="tel" id="r-ph" placeholder="98765 43210" style="flex:1"></div></div>
+          <div class="fg"><label>Username</label><input type="text" id="r-un" placeholder="Choose username"></div>
+          <div class="fg"><label>Password</label><input type="password" id="r-pw" placeholder="Min 8 characters"></div>
+          <button class="btn-gold" onclick="regS2()">Send OTP →</button>
+        </div>
+        <div id="rs2" style="display:none">
+          <div class="step-dots"><div class="dot"></div><div class="dot on"></div><div class="dot"></div></div>
+          <div style="text-align:center;margin-bottom:12px"><div style="font-size:16px;font-weight:700">OTP Verification</div><div style="font-size:11px;color:var(--neutral1);margin-top:4px">Enter the 4-digit OTP sent to your mobile</div></div>
+          <div class="otp-row">
+            <input class="ob" type="text" maxlength="1" id="o1" oninput="onxt(this,'o2')">
+            <input class="ob" type="text" maxlength="1" id="o2" oninput="onxt(this,'o3')">
+            <input class="ob" type="text" maxlength="1" id="o3" oninput="onxt(this,'o4')">
+            <input class="ob" type="text" maxlength="1" id="o4" oninput="onxt(this,null)">
+          </div>
+          <div class="otp-info">Resend in <span id="otm">00:45</span> &nbsp;<span class="resend" id="rs-btn" onclick="rsOtp()">Resend</span></div>
+          <button class="btn-gold" onclick="regS3()">Verify →</button>
+          <div style="text-align:center;margin-top:10px"><button class="alk" onclick="goRS(1)">← Back</button></div>
+        </div>
+        <div id="rs3" style="display:none">
+          <div class="step-dots"><div class="dot"></div><div class="dot"></div><div class="dot on"></div></div>
+          <div class="success-sc">
+            <div class="s-ico">🎉</div>
+            <div class="s-tit">Account Created!</div>
+            <div class="s-bonus-pill">💸 ₹8,888 Bonus Credited!</div>
+            <div class="s-sub">Your VIP casino account is ready.<br>Start playing and win big!</div>
+            <button class="btn-gold" onclick="doLogin()">Start Playing →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ FORGOT PASSWORD ══════════ -->
+<div id="fp-ov">
+  <div class="fp-card">
+    <button class="fp-x" onclick="closeFP()">✕</button>
+    <div id="fp1">
+      <div style="text-align:center;margin-bottom:16px"><div style="font-size:36px;margin-bottom:8px">🔑</div><div style="font-size:17px;font-weight:700">Forgot Password</div><div style="font-size:11px;color:var(--neutral1);margin-top:5px">Enter your registered mobile to get reset OTP</div></div>
+      <div class="fg"><label>Mobile Number</label><div class="ph-row"><div class="cc">🇮🇳 +91</div><input type="tel" id="fp-ph" placeholder="98765 43210" style="flex:1"></div></div>
+      <button class="btn-gold" onclick="fpS2()">Send OTP →</button>
+      <div style="text-align:center;margin-top:12px"><button class="alk" onclick="closeFP()">← Back to Login</button></div>
+    </div>
+    <div id="fp2" style="display:none">
+      <div style="text-align:center;margin-bottom:14px"><div style="font-size:30px;margin-bottom:6px">📱</div><div style="font-size:16px;font-weight:700">Enter OTP</div><div style="font-size:11px;color:var(--neutral1);margin-top:4px">OTP sent to your mobile</div></div>
+      <div class="otp-row">
+        <input class="ob" type="text" maxlength="1" id="fo1" oninput="onxt(this,'fo2')">
+        <input class="ob" type="text" maxlength="1" id="fo2" oninput="onxt(this,'fo3')">
+        <input class="ob" type="text" maxlength="1" id="fo3" oninput="onxt(this,'fo4')">
+        <input class="ob" type="text" maxlength="1" id="fo4" oninput="onxt(this,null)">
+      </div>
+      <button class="btn-gold" onclick="fpS3()">Verify →</button>
+      <div style="text-align:center;margin-top:10px"><button class="alk" onclick="fpBk()">← Back</button></div>
+    </div>
+    <div id="fp3" style="display:none">
+      <div style="text-align:center;margin-bottom:14px"><div style="font-size:28px;margin-bottom:6px">🔒</div><div style="font-size:16px;font-weight:700">New Password</div></div>
+      <div class="fg"><label>New Password</label><input type="password" id="fp-np" placeholder="Min 8 characters"></div>
+      <div class="fg"><label>Confirm Password</label><input type="password" id="fp-cp" placeholder="Re-enter password"></div>
+      <button class="btn-gold" onclick="fpDone()">Reset Password ✓</button>
+    </div>
+    <div id="fp4" style="display:none">
+      <div class="success-sc"><div class="s-ico">✅</div><div class="s-tit">Password Reset!</div><div class="s-sub">Your password has been reset.<br>Login with your new password.</div><button class="btn-gold" onclick="closeFP()">Go to Login</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SLOT MODAL ══════════ -->
+<div id="sm-ov">
+  <div class="sm-box">
+    <button class="sm-x" onclick="closeSM()">✕</button>
+    <div class="sm-gname" id="sm-n">Lucky Diwali 🪔</div>
+    <div class="sm-bal-row">Balance: <span id="sm-b">₹2,84,050</span></div>
+    <div class="jp-box"><div class="jp-box-l">🏆 Progressive Jackpot</div><div class="jp-box-v">₹<span id="jp-sm">42,00,000</span></div></div>
+    <div class="reels"><div class="reel" id="r1">🍋</div><div class="reel" id="r2">🍇</div><div class="reel" id="r3">⭐</div></div>
+    <div class="bet-row">
+      <button class="b-adj" onclick="adjB(-100)">−</button>
+      <div class="bet-disp">₹<span id="sm-bet">500</span></div>
+      <button class="b-adj" onclick="adjB(100)">+</button>
+    </div>
+    <button class="spin-btn" id="sp-btn" onclick="doSpin()">🎰 SPIN</button>
+    <div class="sm-res" id="sm-res"></div>
+  </div>
+</div>
+
+<!-- ══════════ APP ══════════ -->
+<div id="app">
+  <!-- TOP NAV -->
+  <div class="topnav">
+    <div class="tn-logo">KKRIPL</div>
+    <div class="tn-search">
+      <span class="search-ico">🔍</span>
+      <input type="text" placeholder="Search games...">
+    </div>
+    <div class="tn-right">
+      <div class="bal-box">
+        <div class="bal-lbl">Balance</div>
+        <div class="bal-amt">₹<span id="nb">2,84,050</span></div>
+      </div>
+      <button class="dep-btn-top" onclick="showTab('wallet',document.querySelectorAll('.bn-item')[3])">+ Deposit</button>
+      <div class="av-btn" id="uav">RB</div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="app-body">
+    <!-- LEFT SIDEBAR -->
+    <div class="lsb">
+      <div class="lsb-item on" onclick="showTab('home',null,this)"><span class="lsb-ico">🏠</span><span class="lsb-txt">Home</span></div>
+      <div class="lsb-item" onclick="showTab('live',null,this)"><span class="lsb-ico">🔴</span><span class="lsb-txt">Live</span></div>
+      <div class="lsb-item" onclick="showTab('sports',null,this)"><span class="lsb-ico">🏏</span><span class="lsb-txt">Sports</span></div>
+      <div class="lsb-item" onclick="showTab('casino',null,this)"><span class="lsb-ico">🎰</span><span class="lsb-txt">Casino</span></div>
+      <div class="lsb-item" onclick="showTab('promo',null,this)"><span class="lsb-ico">🎁</span><span class="lsb-txt">Promo</span></div>
+      <div class="lsb-item" onclick="showTab('leader',null,this)"><span class="lsb-ico">🏆</span><span class="lsb-txt">Rank</span></div>
+      <div class="lsb-item" onclick="showTab('wallet',null,this)"><span class="lsb-ico">💰</span><span class="lsb-txt">Wallet</span></div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main-scroll">
+      <div class="ticker-wrap">
+        <div class="ticker-inner">
+          <span class="ti"><span class="ti-l">CSK vs MI</span><span class="ti-u">CSK 1.85</span></span>
+          <span class="ti"><span class="ti-l">RCB vs KKR</span><span class="ti-d">KKR 2.10</span></span>
+          <span class="ti"><span class="ti-l">IND vs AUS</span><span class="ti-u">IND 1.72</span></span>
+          <span class="ti"><span class="ti-l">🎰 Jackpot</span><span class="ti-u">₹42,00,000</span></span>
+          <span class="ti"><span class="ti-l">PKL S11</span><span class="ti-u">Patna 1.40</span></span>
+          <span class="ti"><span class="ti-l">Teen Patti</span><span class="ti-u">RTP 97.2%</span></span>
+          <span class="ti"><span class="ti-l">ISL Final</span><span class="ti-d">Goa 3.20</span></span>
+          <span class="ti"><span class="ti-l">Aviator</span><span class="ti-u">🚀 LIVE</span></span>
+          <span class="ti"><span class="ti-l">CSK vs MI</span><span class="ti-u">CSK 1.85</span></span>
+          <span class="ti"><span class="ti-l">RCB vs KKR</span><span class="ti-d">KKR 2.10</span></span>
+          <span class="ti"><span class="ti-l">IND vs AUS</span><span class="ti-u">IND 1.72</span></span>
+          <span class="ti"><span class="ti-l">🎰 Jackpot</span><span class="ti-u">₹42,00,000</span></span>
+          <span class="ti"><span class="ti-l">PKL S11</span><span class="ti-u">Patna 1.40</span></span>
+          <span class="ti"><span class="ti-l">Teen Patti</span><span class="ti-u">RTP 97.2%</span></span>
+          <span class="ti"><span class="ti-l">ISL Final</span><span class="ti-d">Goa 3.20</span></span>
+          <span class="ti"><span class="ti-l">Aviator</span><span class="ti-u">🚀 LIVE</span></span>
+        </div>
+      </div>
+
+      <!-- HOME -->
+      <div class="sec on" id="home">
+        <!-- BANNERS -->
+        <div class="banner-wrap">
+          <div class="banner-track" id="bnr-track">
+            <div class="bn bn1"><div class="bn-bg">🏏</div><div class="bn-body"><div class="bn-tag" style="color:#D1AE52">🏏 IPL 2026 SPECIAL</div><div class="bn-title">20% Cashback on All IPL Bets!</div><div class="bn-sub">Place bets on any IPL match — cashback credited instantly</div><button class="bn-cta cta-gold">Bet Now</button></div></div>
+            <div class="bn bn2"><div class="bn-bg">🎰</div><div class="bn-body"><div class="bn-tag" style="color:#c084fc">🎰 CASINO OFFER</div><div class="bn-title">50 Free Spins on Lucky Diwali!</div><div class="bn-sub">New players only — no wagering required</div><button class="bn-cta cta-blue">Claim Now</button></div></div>
+            <div class="bn bn3"><div class="bn-bg">💸</div><div class="bn-body"><div class="bn-tag" style="color:#04BE02">🎁 WELCOME BONUS</div><div class="bn-title">Get ₹8,888 FREE!</div><div class="bn-sub">On first deposit — instant credit, no wagering</div><button class="bn-cta cta-green">Deposit Now</button></div></div>
+            <div class="bn bn4"><div class="bn-bg">🚀</div><div class="bn-body"><div class="bn-tag" style="color:#EA4E3D">🚀 AVIATOR</div><div class="bn-title">Multiplier Madness — up to 200x!</div><div class="bn-sub">Live crash game — cash out before it flies away</div><button class="bn-cta cta-red">Play Now</button></div></div>
+          </div>
+          <div class="banner-dots"><div class="bd on"></div><div class="bd"></div><div class="bd"></div><div class="bd"></div></div>
+        </div>
+
+        <!-- CATEGORY FILTER -->
+        <div class="cat-filter">
+          <button class="cf on"><span class="cf-ico">🔥</span>Hot</button>
+          <button class="cf"><span class="cf-ico">🏏</span>Cricket</button>
+          <button class="cf"><span class="cf-ico">🎰</span>Slots</button>
+          <button class="cf"><span class="cf-ico">🃏</span>Teen Patti</button>
+          <button class="cf"><span class="cf-ico">🚀</span>Aviator</button>
+          <button class="cf"><span class="cf-ico">🎲</span>Roulette</button>
+          <button class="cf"><span class="cf-ico">🎡</span>Andar Bahar</button>
+          <button class="cf"><span class="cf-ico">⚽</span>Football</button>
+          <button class="cf"><span class="cf-ico">✨</span>New</button>
+        </div>
+
+        <!-- JACKPOT BAR -->
+        <div class="jp-bar">
+          <div><div class="jp-lbl">🏆 Progressive Jackpot</div></div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <span class="jp-ico">💰</span>
+            <span class="jp-val">₹<span id="jp-main">42,00,000</span></span>
+          </div>
+        </div>
+
+        <!-- LIVE NOW -->
+        <div class="sec-hdr"><div class="sec-ttl"><span class="live-dot"></span>Live Now</div><button class="see-all" onclick="showTab('live')">See All →</button></div>
+        <div class="live-grid">
+          <div class="lc"><div class="lc-top"><span class="lc-sport">🏏 IPL 2026</span><span class="lc-pill">● LIVE</span></div><div class="lc-teams"><div class="lc-team"><div class="lc-tn">CSK</div><div class="lc-sc">142</div></div><div class="lc-vs">vs</div><div class="lc-team"><div class="lc-tn">MI</div><div class="lc-sc">118/4</div></div></div><div class="lc-meta">Over 14.3 · Wankhede</div><div class="lc-odds"><div class="lco"><div class="lco-l">CSK</div><div class="lco-v">1.65</div></div><div class="lco"><div class="lco-l">MI</div><div class="lco-v">2.30</div></div></div></div>
+          <div class="lc"><div class="lc-top"><span class="lc-sport">🏐 PKL S11</span><span class="lc-pill">● LIVE</span></div><div class="lc-teams"><div class="lc-team"><div class="lc-tn">Patna</div><div class="lc-sc">34</div></div><div class="lc-vs">vs</div><div class="lc-team"><div class="lc-tn">UP</div><div class="lc-sc">29</div></div></div><div class="lc-meta">Half 2 · 18 min</div><div class="lc-odds"><div class="lco"><div class="lco-l">Patna</div><div class="lco-v">1.40</div></div><div class="lco"><div class="lco-l">UP</div><div class="lco-v">2.80</div></div></div></div>
+        </div>
+
+        <!-- HOT GAMES -->
+        <div class="sec-hdr"><div class="sec-ttl">🔥 Hot Games</div><button class="see-all" onclick="showTab('casino')">See All →</button></div>
+        <div class="game-grid">
+          <div class="game-card gc1" onclick="openSM('Lucky Diwali 🪔')"><span class="gc-badge bdg-hot">HOT</span><div class="gc-thumb">🪔</div><div class="gc-info"><div class="gc-name">Lucky Diwali</div><div class="gc-meta"><span class="gc-rtp">RTP 96.8%</span></div></div></div>
+          <div class="game-card gc2" onclick="openSM('Aviator 🚀')"><span class="gc-badge bdg-live">LIVE</span><div class="gc-thumb">🚀</div><div class="gc-info"><div class="gc-name">Aviator</div><div class="gc-meta"><span class="gc-rtp">RTP 97%</span></div></div></div>
+          <div class="game-card gc3" onclick="openSM('Teen Patti 🃏')"><span class="gc-badge bdg-hot">HOT</span><div class="gc-thumb">🃏</div><div class="gc-info"><div class="gc-name">Teen Patti</div><div class="gc-meta"><span class="gc-rtp">RTP 96.5%</span></div></div></div>
+          <div class="game-card gc4" onclick="openSM('Dragon Tiger 🐉')"><div class="gc-thumb">🐉</div><div class="gc-info"><div class="gc-name">Dragon Tiger</div><div class="gc-meta"><span class="gc-rtp">RTP 96.3%</span></div></div></div>
+          <div class="game-card gc5" onclick="openSM('Andar Bahar 🎡')"><span class="gc-badge bdg-new">NEW</span><div class="gc-thumb">🎡</div><div class="gc-info"><div class="gc-name">Andar Bahar</div><div class="gc-meta"><span class="gc-rtp">RTP 97.3%</span></div></div></div>
+          <div class="game-card gc6" onclick="openSM('Roulette 🎲')"><div class="gc-thumb">🎲</div><div class="gc-info"><div class="gc-name">Roulette</div><div class="gc-meta"><span class="gc-rtp">RTP 97.3%</span></div></div></div>
+          <div class="game-card gc7" onclick="openSM('Gold Rush 💰')"><span class="gc-badge bdg-jp">JACKPOT</span><div class="gc-thumb">💰</div><div class="gc-info"><div class="gc-name">Gold Rush</div><div class="gc-meta"><span class="gc-rtp">RTP 95.2%</span></div></div></div>
+          <div class="game-card gc8" onclick="openSM('Mines 💣')"><span class="gc-badge bdg-new">NEW</span><div class="gc-thumb">💣</div><div class="gc-info"><div class="gc-name">Mines</div><div class="gc-meta"><span class="gc-rtp">RTP 97%</span></div></div></div>
+          <div class="game-card gc9" onclick="openSM('Plinko 🎯')"><div class="gc-thumb">🎯</div><div class="gc-info"><div class="gc-name">Plinko</div><div class="gc-meta"><span class="gc-rtp">RTP 96%</span></div></div></div>
+          <div class="game-card gc10" onclick="openSM('Keno 🎳')"><div class="gc-thumb">🎳</div><div class="gc-info"><div class="gc-name">Keno</div><div class="gc-meta"><span class="gc-rtp">RTP 95.5%</span></div></div></div>
+          <div class="game-card gc11" onclick="openSM('IPL Fever 🏏')"><span class="gc-badge bdg-hot">HOT</span><div class="gc-thumb">🏏</div><div class="gc-info"><div class="gc-name">IPL Fever</div><div class="gc-meta"><span class="gc-rtp">RTP 95.8%</span></div></div></div>
+          <div class="game-card gc12" onclick="openSM('Blackjack 🂡')"><div class="gc-thumb">🂡</div><div class="gc-info"><div class="gc-name">Blackjack</div><div class="gc-meta"><span class="gc-rtp">RTP 99.5%</span></div></div></div>
+        </div>
+
+        <!-- SPORTS ODDS -->
+        <div class="sec-hdr"><div class="sec-ttl">🏏 Today's Odds</div><button class="see-all" onclick="showTab('sports')">See All →</button></div>
+        <div class="odds-block">
+          <div class="ob-hdr"><span class="ob-sport sp-c">IPL</span><span class="ob-title">RCB vs KKR · Match 22</span><span class="ob-live">● LIVE</span></div>
+          <div class="odds-row"><div class="or-team"><div class="or-name">Royal Challengers Bangalore</div><div class="or-sub">Batting · Over 8.2 · 68/2</div></div><span class="sc-badge">68/2</span><div class="odd-btns"><div class="odd-btn" onclick="addBet(this,'RCB Win','1.95')"><div class="od-lbl">RCB</div><div class="od-val fav">1.95</div></div><div class="odd-btn" onclick="addBet(this,'KKR Win','1.88')"><div class="od-lbl">KKR</div><div class="od-val">1.88</div></div></div></div>
+        </div>
+        <div class="odds-block">
+          <div class="ob-hdr"><span class="ob-sport sp-c">Test</span><span class="ob-title">India vs Australia · 4th Test</span><span class="ob-time">9:30 AM</span></div>
+          <div class="odds-row"><div class="or-team"><div class="or-name">India</div><div class="or-sub">MCG · Day 1</div></div><div class="odd-btns"><div class="odd-btn" onclick="addBet(this,'IND Win','1.72')"><div class="od-lbl">IND</div><div class="od-val fav">1.72</div></div><div class="odd-btn" onclick="addBet(this,'Draw','3.50')"><div class="od-lbl">Draw</div><div class="od-val">3.50</div></div><div class="odd-btn" onclick="addBet(this,'AUS Win','4.20')"><div class="od-lbl">AUS</div><div class="od-val">4.20</div></div></div></div>
+        </div>
+      </div>
+
+      <!-- LIVE -->
+      <div class="sec" id="live">
+        <div class="sec-hdr"><div class="sec-ttl"><span class="live-dot"></span>Live Matches</div></div>
+        <div class="live-grid">
+          <div class="lc"><div class="lc-top"><span class="lc-sport">🏏 IPL 2026</span><span class="lc-pill">● LIVE</span></div><div class="lc-teams"><div class="lc-team"><div class="lc-tn">CSK</div><div class="lc-sc">142</div></div><div class="lc-vs">vs</div><div class="lc-team"><div class="lc-tn">MI</div><div class="lc-sc">118/4</div></div></div><div class="lc-meta">Over 14.3 · Wankhede · MI Batting</div><div class="lc-odds"><div class="lco"><div class="lco-l">CSK Win</div><div class="lco-v">1.65</div></div><div class="lco"><div class="lco-l">MI Win</div><div class="lco-v">2.30</div></div></div></div>
+          <div class="lc"><div class="lc-top"><span class="lc-sport">🏏 IPL 2026</span><span class="lc-pill">● LIVE</span></div><div class="lc-teams"><div class="lc-team"><div class="lc-tn">RCB</div><div class="lc-sc">68/2</div></div><div class="lc-vs">vs</div><div class="lc-team"><div class="lc-tn">KKR</div><div class="lc-sc">142</div></div></div><div class="lc-meta">Over 8.2 · Chinnaswamy</div><div class="lc-odds"><div class="lco"><div class="lco-l">RCB</div><div class="lco-v">1.95</div></div><div class="lco"><div class="lco-l">KKR</div><div class="lco-v">1.88</div></div></div></div>
+          <div class="lc"><div class="lc-top"><span class="lc-sport">🏐 PKL S11</span><span class="lc-pill">● LIVE</span></div><div class="lc-teams"><div class="lc-team"><div class="lc-tn">Patna</div><div class="lc-sc">34</div></div><div class="lc-vs">vs</div><div class="lc-team"><div class="lc-tn">UP</div><div class="lc-sc">29</div></div></div><div class="lc-meta">Half 2 · 18 min remaining</div><div class="lc-odds"><div class="lco"><div class="lco-l">Patna</div><div class="lco-v">1.40</div></div><div class="lco"><div class="lco-l">UP</div><div class="lco-v">2.80</div></div></div></div>
+          <div class="lc"><div class="lc-top"><span class="lc-sport">⚽ ISL</span><span class="lc-pill">● LIVE</span></div><div class="lc-teams"><div class="lc-team"><div class="lc-tn">Mumbai</div><div class="lc-sc">1</div></div><div class="lc-vs">vs</div><div class="lc-team"><div class="lc-tn">Goa</div><div class="lc-sc">1</div></div></div><div class="lc-meta">72' · DY Patil Stadium</div><div class="lc-odds"><div class="lco"><div class="lco-l">Mum</div><div class="lco-v">1.90</div></div><div class="lco"><div class="lco-l">Draw</div><div class="lco-v">3.20</div></div><div class="lco"><div class="lco-l">Goa</div><div class="lco-v">3.80</div></div></div></div>
+        </div>
+      </div>
+
+      <!-- SPORTS -->
+      <div class="sec" id="sports">
+        <div class="sec-hdr"><div class="sec-ttl">All Sports Markets</div></div>
+        <div class="odds-block"><div class="ob-hdr"><span class="ob-sport sp-c">IPL</span><span class="ob-title">CSK vs MI</span><span class="ob-live">● LIVE</span></div><div class="odds-row"><div class="or-team"><div class="or-name">Chennai Super Kings</div><div class="or-sub">Innings complete · 142/8</div></div><div class="odd-btns"><div class="odd-btn" onclick="addBet(this,'CSK Win','1.65')"><div class="od-lbl">CSK</div><div class="od-val fav">1.65</div></div><div class="odd-btn" onclick="addBet(this,'MI Win','2.30')"><div class="od-lbl">MI</div><div class="od-val">2.30</div></div></div></div></div>
+        <div class="odds-block"><div class="ob-hdr"><span class="ob-sport sp-c">Test</span><span class="ob-title">India vs Australia · 4th Test</span><span class="ob-time">9:30 AM</span></div><div class="odds-row"><div class="or-team"><div class="or-name">India</div><div class="or-sub">MCG · Day 1</div></div><div class="odd-btns"><div class="odd-btn" onclick="addBet(this,'IND Win','1.72')"><div class="od-lbl">IND</div><div class="od-val fav">1.72</div></div><div class="odd-btn" onclick="addBet(this,'Draw','3.50')"><div class="od-lbl">Draw</div><div class="od-val">3.50</div></div><div class="odd-btn" onclick="addBet(this,'AUS','4.20')"><div class="od-lbl">AUS</div><div class="od-val">4.20</div></div></div></div></div>
+        <div class="odds-block"><div class="ob-hdr"><span class="ob-sport sp-k">Kabaddi</span><span class="ob-title">Bengaluru Bulls vs Delhi</span><span class="ob-time">7:30 PM</span></div><div class="odds-row"><div class="or-team"><div class="or-name">Bengaluru Bulls</div><div class="or-sub">PKL Season 11</div></div><div class="odd-btns"><div class="odd-btn" onclick="addBet(this,'BLR Win','1.60')"><div class="od-lbl">BLR</div><div class="od-val fav">1.60</div></div><div class="odd-btn" onclick="addBet(this,'DEL Win','2.30')"><div class="od-lbl">DEL</div><div class="od-val">2.30</div></div></div></div></div>
+        <div class="odds-block"><div class="ob-hdr"><span class="ob-sport sp-f">Football</span><span class="ob-title">Mumbai City vs Goa FC · ISL Final</span><span class="ob-time">8:00 PM</span></div><div class="odds-row"><div class="or-team"><div class="or-name">Mumbai City FC</div><div class="or-sub">Home · DY Patil</div></div><div class="odd-btns"><div class="odd-btn" onclick="addBet(this,'MUM Win','1.90')"><div class="od-lbl">MUM</div><div class="od-val fav">1.90</div></div><div class="odd-btn" onclick="addBet(this,'Draw','3.20')"><div class="od-lbl">Draw</div><div class="od-val">3.20</div></div><div class="odd-btn" onclick="addBet(this,'GOA Win','3.80')"><div class="od-lbl">GOA</div><div class="od-val">3.80</div></div></div></div></div>
+        <div class="odds-block"><div class="ob-hdr"><span class="ob-sport sp-t">Tennis</span><span class="ob-title">Djokovic vs Sinner · Miami Open</span><span class="ob-time">11:00 PM</span></div><div class="odds-row"><div class="or-team"><div class="or-name">Djokovic</div><div class="or-sub">Seeded #2</div></div><div class="odd-btns"><div class="odd-btn" onclick="addBet(this,'DJK Win','1.80')"><div class="od-lbl">DJK</div><div class="od-val">1.80</div></div><div class="odd-btn" onclick="addBet(this,'SIN Win','2.00')"><div class="od-lbl">SIN</div><div class="od-val fav">2.00</div></div></div></div></div>
+      </div>
+
+      <!-- CASINO -->
+      <div class="sec" id="casino">
+        <div class="jp-bar" style="margin:10px;border-radius:8px;border:1px solid rgba(209,174,82,.15)">
+          <div><div class="jp-lbl">🏆 Progressive Jackpot</div></div>
+          <div style="display:flex;align-items:center;gap:8px"><span class="jp-ico">💰</span><span class="jp-val">₹<span id="jp-cas">42,00,000</span></span></div>
+        </div>
+        <div class="cat-filter">
+          <button class="cf on">All</button><button class="cf">🎰 Slots</button><button class="cf">🃏 Teen Patti</button>
+          <button class="cf">🎲 Roulette</button><button class="cf">🂡 Blackjack</button>
+          <button class="cf">🚀 Crash</button><button class="cf">💣 Mines</button><button class="cf">🎡 Andar Bahar</button>
+        </div>
+        <div class="game-grid" style="padding-top:10px">
+          <div class="game-card gc1" onclick="openSM('Lucky Diwali 🪔')"><span class="gc-badge bdg-hot">HOT</span><div class="gc-thumb">🪔</div><div class="gc-info"><div class="gc-name">Lucky Diwali</div><div class="gc-meta"><span class="gc-rtp">96.8%</span></div></div></div>
+          <div class="game-card gc2" onclick="openSM('Aviator 🚀')"><span class="gc-badge bdg-live">LIVE</span><div class="gc-thumb">🚀</div><div class="gc-info"><div class="gc-name">Aviator</div><div class="gc-meta"><span class="gc-rtp">97.0%</span></div></div></div>
+          <div class="game-card gc3" onclick="openSM('Teen Patti 🃏')"><span class="gc-badge bdg-hot">HOT</span><div class="gc-thumb">🃏</div><div class="gc-info"><div class="gc-name">Teen Patti</div><div class="gc-meta"><span class="gc-rtp">96.5%</span></div></div></div>
+          <div class="game-card gc4" onclick="openSM('Dragon Tiger 🐉')"><div class="gc-thumb">🐉</div><div class="gc-info"><div class="gc-name">Dragon Tiger</div><div class="gc-meta"><span class="gc-rtp">96.3%</span></div></div></div>
+          <div class="game-card gc9" onclick="openSM('Andar Bahar 🎡')"><span class="gc-badge bdg-new">NEW</span><div class="gc-thumb">🎡</div><div class="gc-info"><div class="gc-name">Andar Bahar</div><div class="gc-meta"><span class="gc-rtp">97.3%</span></div></div></div>
+          <div class="game-card gc6" onclick="openSM('Roulette 🎲')"><div class="gc-thumb">🎲</div><div class="gc-info"><div class="gc-name">Roulette</div><div class="gc-meta"><span class="gc-rtp">97.3%</span></div></div></div>
+          <div class="game-card gc7" onclick="openSM('Gold Rush 💰')"><span class="gc-badge bdg-jp">JACKPOT</span><div class="gc-thumb">💰</div><div class="gc-info"><div class="gc-name">Gold Rush</div><div class="gc-meta"><span class="gc-rtp">95.2%</span></div></div></div>
+          <div class="game-card gc8" onclick="openSM('Mines 💣')"><span class="gc-badge bdg-new">NEW</span><div class="gc-thumb">💣</div><div class="gc-info"><div class="gc-name">Mines</div><div class="gc-meta"><span class="gc-rtp">97.0%</span></div></div></div>
+          <div class="game-card gc5" onclick="openSM('Plinko 🎯')"><div class="gc-thumb">🎯</div><div class="gc-info"><div class="gc-name">Plinko</div><div class="gc-meta"><span class="gc-rtp">96.0%</span></div></div></div>
+          <div class="game-card gc10" onclick="openSM('Keno 🎳')"><div class="gc-thumb">🎳</div><div class="gc-info"><div class="gc-name">Keno</div><div class="gc-meta"><span class="gc-rtp">95.5%</span></div></div></div>
+          <div class="game-card gc11" onclick="openSM('Blackjack 🂡')"><div class="gc-thumb">🂡</div><div class="gc-info"><div class="gc-name">Blackjack</div><div class="gc-meta"><span class="gc-rtp">99.5%</span></div></div></div>
+          <div class="game-card gc12" onclick="openSM('Baccarat 🎴')"><div class="gc-thumb">🎴</div><div class="gc-info"><div class="gc-name">Baccarat</div><div class="gc-meta"><span class="gc-rtp">98.9%</span></div></div></div>
+        </div>
+      </div>
+
+      <!-- PROMOTIONS -->
+      <div class="sec" id="promo">
+        <div class="sec-hdr"><div class="sec-ttl">🎁 Promotions & Bonuses</div></div>
+        <div class="promo-grid">
+          <div class="promo-card"><div class="pc-top" style="background:linear-gradient(135deg,#1a0e00,#3d2400)"><div class="pc-bg-ico">🏏</div><div class="pc-tag" style="color:var(--primary)">IPL 2026</div><div class="pc-title">20% Cashback</div><div class="pc-sub">On all IPL bets this season</div></div><div class="pc-body"><div class="pc-detail">Cashback on all losing IPL bets. Min ₹200 bet. Max ₹5,000/day.</div><button class="pc-btn btn-gold" style="padding:8px">Claim Offer</button></div></div>
+          <div class="promo-card"><div class="pc-top" style="background:linear-gradient(135deg,#0a0a1a,#161630)"><div class="pc-bg-ico">🎰</div><div class="pc-tag" style="color:#c084fc">Casino</div><div class="pc-title">50 Free Spins</div><div class="pc-sub">On Lucky Diwali slot</div></div><div class="pc-body"><div class="pc-detail">New players only. Winnings credited to bonus wallet. x3 wagering.</div><button class="pc-btn" style="background:#9333ea;color:#fff;padding:8px">Claim Spins</button></div></div>
+          <div class="promo-card"><div class="pc-top" style="background:linear-gradient(135deg,#0a1a0a,#0d3010)"><div class="pc-bg-ico">💸</div><div class="pc-tag" style="color:var(--accent1)">Welcome</div><div class="pc-title">₹8,888 Bonus</div><div class="pc-sub">First deposit free bonus</div></div><div class="pc-body"><div class="pc-detail">Deposit any amount. Get ₹8,888 instantly. No wagering. Withdraw anytime.</div><button class="pc-btn" style="background:var(--accent1);color:#000;padding:8px">Deposit Now</button></div></div>
+          <div class="promo-card"><div class="pc-top" style="background:linear-gradient(135deg,#1a0800,#300800)"><div class="pc-bg-ico">👥</div><div class="pc-tag" style="color:var(--accent3)">Refer</div><div class="pc-title">₹200 Per Friend</div><div class="pc-sub">Unlimited referrals</div></div><div class="pc-body"><div class="pc-detail">Your code: <strong style="color:var(--primary);font-family:'JetBrains Mono',monospace">RAHUL200</strong>. Earn ₹200 per referral on ₹500+ deposit.</div><button class="pc-btn" style="background:var(--primary);color:var(--bg1);padding:8px">Share Code</button></div></div>
+        </div>
+      </div>
+
+      <!-- LEADERBOARD -->
+      <div class="sec" id="leader">
+        <div class="sec-hdr"><div class="sec-ttl">🏆 Top Players — March 2026</div></div>
+        <div class="lb-wrap">
+          <div class="lb-hd"><div>#</div><div>Player</div><div>Bets</div><div>Win%</div><div>Profit</div></div>
+          <div id="lb-rows"></div>
+        </div>
+      </div>
+
+      <!-- WALLET -->
+      <div class="sec" id="wallet">
+        <div class="wallet-hero">
+          <div class="wh-lbl">Available Balance</div>
+          <div class="wh-amt">₹<span id="wb">2,84,050</span></div>
+          <div class="wh-sub">Withdrawable: ₹<span id="wd">2,84,050</span></div>
+          <div class="wh-badges">
+            <span class="wbdg bdg-g">🏆 Gold VIP</span>
+            <span class="wbdg bdg-id">ID: 692233484</span>
+            <span class="wbdg bdg-g">🇮🇳 INR</span>
+          </div>
+        </div>
+
+        <div class="wit-limit">
+          <div class="wl-title">⚠️ Withdrawal Limits</div>
+          <div class="wl-rows">
+            <div class="wl-row">Max per transaction <span>₹50,000</span></div>
+            <div class="wl-row">Max per day <span>₹1,00,000</span></div>
+            <div class="wl-row">Minimum withdrawal <span>₹100</span></div>
+            <div class="wl-row">UPI processing time <span>5–10 mins</span></div>
+            <div class="wl-row">Bank transfer time <span>1–3 hours</span></div>
+          </div>
+        </div>
+
+        <div class="wform">
+          <div class="wf-ttl" style="color:var(--accent1)">⬇ Deposit Funds</div>
+          <div class="presets">
+            <button class="pb" onclick="pp(this,'d','500')">₹500</button>
+            <button class="pb" onclick="pp(this,'d','1000')">₹1,000</button>
+            <button class="pb" onclick="pp(this,'d','5000')">₹5,000</button>
+            <button class="pb" onclick="pp(this,'d','10000')">₹10,000</button>
+          </div>
+          <div class="inp-r"><div class="ctag">₹</div><input type="number" id="di" placeholder="Enter amount" min="100"></div>
+          <div class="meth-g">
+            <div class="mc on" onclick="pm(this)"><div class="mc-ico">📱</div>UPI/GPay<div class="mc-pop">★ POPULAR</div></div>
+            <div class="mc" onclick="pm(this)"><div class="mc-ico">🏦</div>Net Banking</div>
+            <div class="mc" onclick="pm(this)"><div class="mc-ico">💳</div>Debit Card</div>
+            <div class="mc" onclick="pm(this)"><div class="mc-ico">₿</div>Crypto</div>
+          </div>
+          <button class="btn-g2" onclick="doDep()">⚡ Deposit Now</button>
+        </div>
+
+        <div class="wform">
+          <div class="wf-ttl" style="color:var(--primary)">⬆ Withdraw Funds</div>
+          <div style="font-size:11px;color:var(--accent2);background:rgba(234,78,61,.06);border:1px solid rgba(234,78,61,.15);border-radius:7px;padding:7px 10px;margin-bottom:10px;display:flex;align-items:center;gap:5px"><span>⚠️</span>Max per transaction: <strong>₹50,000</strong></div>
+          <div class="presets">
+            <button class="pb" onclick="pp(this,'w','500')">₹500</button>
+            <button class="pb" onclick="pp(this,'w','1000')">₹1,000</button>
+            <button class="pb" onclick="pp(this,'w','5000')">₹5,000</button>
+            <button class="pb" onclick="pp(this,'w','50000')">₹50,000</button>
+          </div>
+          <div class="inp-r"><div class="ctag">₹</div><input type="number" id="wi" placeholder="Max ₹50,000" max="50000" min="100"></div>
+          <div class="meth-g">
+            <div class="mc on" onclick="pm(this)"><div class="mc-ico">🏦</div>Bank Transfer<div class="mc-pop">★ RECOMMENDED</div></div>
+            <div class="mc" onclick="pm(this)"><div class="mc-ico">📱</div>UPI/GPay</div>
+            <div class="mc" onclick="pm(this)"><div class="mc-ico">📲</div>PhonePe</div>
+            <div class="mc" onclick="pm(this)"><div class="mc-ico">₿</div>Crypto</div>
+          </div>
+          <button class="btn-g2 out" onclick="doWit()">💸 Withdraw Now</button>
+        </div>
+
+        <div class="tx-wrap">
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--neutral2);font-weight:700;margin-bottom:10px">Transaction History</div>
+          <div id="tx-list">
+            <div class="tx-item"><div class="txl"><div class="tx-ico txi-d">⬇️</div><div><div class="tx-n">UPI Deposit — GPay</div><div class="tx-d">22 Mar 2026 · 10:32 AM</div></div></div><div class="tx-a ta-d">+₹50,000</div></div>
+            <div class="tx-item"><div class="txl"><div class="tx-ico txi-w">⬆️</div><div><div class="tx-n">Bank Withdrawal</div><div class="tx-d">18 Mar 2026 · 3:15 PM</div></div></div><div class="tx-a ta-w">-₹20,000</div></div>
+            <div class="tx-item"><div class="txl"><div class="tx-ico txi-d">⬇️</div><div><div class="tx-n">Net Banking Deposit</div><div class="tx-d">14 Mar 2026</div></div></div><div class="tx-a ta-d">+₹1,00,000</div></div>
+            <div class="tx-item"><div class="txl"><div class="tx-ico txi-d">⬇️</div><div><div class="tx-n">PhonePe Deposit</div><div class="tx-d">01 Mar 2026</div></div></div><div class="tx-a ta-d">+₹25,000</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /main-scroll -->
+  </div><!-- /app-body -->
+
+  <!-- BET SLIP -->
+  <div class="betslip">
+    <div class="bs-lbl">Bet Slip</div>
+    <div class="bs-cnt" id="bs-cnt">0</div>
+    <div class="bs-items" id="bs-items"><span style="font-size:11px;color:var(--neutral2)">Click odds to add bets</span></div>
+    <button class="place-btn" onclick="placeBets()">Place Bets</button>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <div class="btmnav">
+    <div class="bn-item on" onclick="showTab('home',this)"><div class="bn-ico">🏠</div><div class="bn-txt">Home</div></div>
+    <div class="bn-item" onclick="showTab('live',this)"><div class="bn-ico">🔴</div><div class="bn-txt">Live</div><div class="bn-badge">4</div></div>
+    <div class="bn-item" onclick="showTab('casino',this)"><div class="bn-ico">🎰</div><div class="bn-txt">Casino</div></div>
+    <div class="bn-item" onclick="showTab('wallet',this)"><div class="bn-ico">💰</div><div class="bn-txt">Wallet</div></div>
+    <div class="bn-item" onclick="showTab('promo',this)"><div class="bn-ico">🎁</div><div class="bn-txt">Promo</div></div>
+  </div>
+</div><!-- /app -->
+
+<div id="toast"></div>
+
+<script>
+// ── State ──
+let bal=284050, jp=4200000, slotBet=500, bets=[];
+let otpT;
+const SYMS=['🍋','🍇','🔔','⭐','💎','🍒','7️⃣','🃏','🎯','🌟'];
+
+// ── Helpers ──
+const f=n=>n.toLocaleString('en-IN');
+function updBal(){['nb','wb','wd'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=f(bal)});const sb=document.getElementById('sm-b');if(sb)sb.textContent='₹'+f(bal)}
+function toast(msg,err){const t=document.getElementById('toast');t.textContent=msg;t.style.borderColor=err?'var(--accent2)':'var(--primary)';t.style.color=err?'var(--accent2)':'var(--primary)';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600)}
+
+// ── Auth ──
+function authTab(tab,btn){document.querySelectorAll('.ac-tab').forEach(b=>b.classList.remove('on'));btn.classList.add('on');document.getElementById('pane-login').style.display=tab==='login'?'block':'none';document.getElementById('pane-reg').style.display=tab==='register'?'block':'none';if(tab==='register')goRS(1)}
+function goRS(n){[1,2,3].forEach(i=>{const e=document.getElementById('rs'+i);if(e)e.style.display=i===n?'block':'none'});if(n===2)startOtp('otm','rs-btn')}
+function regS2(){if(!document.getElementById('r-n').value||!document.getElementById('r-ph').value){toast('Please fill all fields',true);return}goRS(2);toast('OTP sent!')}
+function regS3(){goRS(3)}
+function onxt(el,nid){if(el.value.length===1&&nid){const n=document.getElementById(nid);if(n)n.focus()}}
+function startOtp(tid,rid,s=45){let sec=s;clearInterval(otpT);const te=document.getElementById(tid),re=document.getElementById(rid);if(re)re.style.display='none';otpT=setInterval(()=>{sec--;if(te)te.textContent='00:'+String(sec).padStart(2,'0');if(sec<=0){clearInterval(otpT);if(te)te.textContent='00:00';if(re)re.style.display='inline'}},1000)}
+function rsOtp(){startOtp('otm','rs-btn');toast('OTP resent!')}
+
+function doLogin(){
+  const u=document.getElementById('l-u')?.value||'rahul_betpro';
+  const n=u.split('_')[0];const dn=n.charAt(0).toUpperCase()+n.slice(1);
+  document.getElementById('uav').textContent=dn.slice(0,2).toUpperCase();
+  const auth=document.getElementById('auth');auth.classList.add('out');
+  const app=document.getElementById('app');app.classList.add('on');
+  buildLB();jpTick();
+  setTimeout(()=>auth.remove(),500);
+}
+
+// ── Forgot Password ──
+function openFP(){document.getElementById('fp-ov').classList.add('open');['fp1','fp2','fp3','fp4'].forEach((id,i)=>{const e=document.getElementById(id);if(e)e.style.display=i===0?'block':'none'})}
+function closeFP(){document.getElementById('fp-ov').classList.remove('open')}
+function fpS2(){const ph=document.getElementById('fp-ph').value;if(!ph||ph.length<10){toast('Enter valid mobile',true);return}document.getElementById('fp1').style.display='none';document.getElementById('fp2').style.display='block';toast('Reset OTP sent!')}
+function fpS3(){document.getElementById('fp2').style.display='none';document.getElementById('fp3').style.display='block'}
+function fpDone(){const np=document.getElementById('fp-np').value,cp=document.getElementById('fp-cp').value;if(np.length<8){toast('Min 8 characters',true);return}if(np!==cp){toast('Passwords do not match',true);return}document.getElementById('fp3').style.display='none';document.getElementById('fp4').style.display='block'}
+function fpBk(){document.getElementById('fp2').style.display='none';document.getElementById('fp1').style.display='block'}
+
+// ── Navigation ──
+function showTab(id,el){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.bn-item').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.lsb-item').forEach(b=>b.classList.remove('on'));
+  const sec=document.getElementById(id);if(sec)sec.classList.add('on');
+  if(el&&el.classList){if(el.classList.contains('bn-item'))el.classList.add('on')}
+}
+
+// ── Category filter ──
+document.querySelectorAll('.cf').forEach(b=>b.addEventListener('click',function(){this.closest('.cat-filter').querySelectorAll('.cf').forEach(x=>x.classList.remove('on'));this.classList.add('on')}));
+document.querySelectorAll('.slot-cat')?.forEach(b=>b.addEventListener('click',function(){this.closest('div').querySelectorAll('.slot-cat').forEach(x=>x.classList.remove('on'));this.classList.add('on')}));
+
+// ── Bet Slip ──
+function addBet(btn,name,odd){
+  btn.classList.toggle('on');
+  const idx=bets.findIndex(b=>b.n===name);
+  if(idx>-1)bets.splice(idx,1);else bets.push({n:name,o:odd});
+  renderSlip();
+}
+function renderSlip(){
+  const c=document.getElementById('bs-cnt'),items=document.getElementById('bs-items');
+  c.textContent=bets.length;
+  if(!bets.length){items.innerHTML='<span style="font-size:11px;color:var(--neutral2)">Click odds to add bets</span>';return}
+  items.innerHTML=bets.map(b=>`<div class="bs-chip"><span>${b.n}</span><span class="bco">${b.o}</span><span class="bcx" onclick="rmBet('${b.n}')">✕</span></div>`).join('');
+}
+function rmBet(n){bets=bets.filter(b=>b.n!==n);renderSlip();document.querySelectorAll('.odd-btn.on').forEach(b=>{if(b.onclick&&b.onclick.toString().includes(n))b.classList.remove('on')})}
+function placeBets(){if(!bets.length){toast('Add bets first!',true);return}toast(`✅ ${bets.length} bet(s) placed!`);bets=[];renderSlip();document.querySelectorAll('.odd-btn.on').forEach(b=>b.classList.remove('on'))}
+
+// ── Leaderboard ──
+const players=[
+  {n:'Virat_BetKing',c:'Bangalore',b:348,w:71.2,p:8420000,col:'#D1AE52'},
+  {n:'RohitSharmaBhai',c:'Mumbai',b:291,w:66.8,p:6150000,col:'#E9CA78'},
+  {n:'DhoniFinisher07',c:'Chennai',b:412,w:64.1,p:5880000,col:'#C39949'},
+  {n:'SachinFan99',c:'Pune',b:185,w:62.7,p:4300000,col:'#04BE02'},
+  {n:'rahul_betpro',c:'Mumbai',b:142,w:58.4,p:1240000,col:'#D1AE52',me:true},
+  {n:'IPLExpert22',c:'Delhi',b:220,w:57.1,p:980000,col:'#FFAA09'},
+  {n:'KabaddiKing',c:'Patna',b:168,w:54.3,p:640000,col:'#EA4E3D'},
+  {n:'BetBaadshah',c:'Kolkata',b:94,w:52.8,p:340000,col:'#999'},
+];
+function buildLB(){
+  const c=document.getElementById('lb-rows');c.innerHTML='';
+  players.forEach((p,i)=>{
+    const d=document.createElement('div');d.className='lb-rw rk'+(i+1)+(p.me?' me':'');
+    const medal=i===0?'🥇':i===1?'🥈':i===2?'🥉':'';
+    d.innerHTML=`<div><span class="rnk">${medal||(i+1)}</span></div>
+    <div class="pflex"><div class="pav" style="background:${p.col};color:${i<3?'#000':'#fff'}">${p.n[0].toUpperCase()}</div>
+    <div><div class="pname">${p.n}${p.me?'<span class="me-tag">YOU</span>':''}</div><div class="pid">📍${p.c}</div></div></div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--neutral1)">${p.b}</div>
+    <div class="wr-t">${p.w}%</div><div class="pft">+₹${f(p.p)}</div>`;
+    c.appendChild(d);
+  });
+}
+
+// ── Jackpot Ticker ──
+function jpTick(){setInterval(()=>{jp+=Math.floor(Math.random()*600+100);['jp-main','jp-cas','jp-sm'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=f(jp)})},2200)}
+
+// ── Slot Machine ──
+function openSM(name){
+  document.getElementById('sm-n').textContent='🎰 '+name;
+  document.getElementById('sm-res').textContent='';document.getElementById('sm-res').className='sm-res';
+  document.getElementById('sp-btn').disabled=false;
+  ['r1','r2','r3'].forEach(id=>{const r=document.getElementById(id);r.textContent=SYMS[Math.floor(Math.random()*SYMS.length)];r.classList.remove('win','spin')});
+  document.getElementById('sm-b').textContent='₹'+f(bal);
+  document.getElementById('sm-ov').classList.add('open');
+}
+function closeSM(){document.getElementById('sm-ov').classList.remove('open')}
+function adjB(d){slotBet=Math.max(100,Math.min(slotBet+d,50000));document.getElementById('sm-bet').textContent=f(slotBet)}
+function doSpin(){
+  if(bal<slotBet){toast('Insufficient balance!',true);return}
+  bal-=slotBet;updBal();
+  const btn=document.getElementById('sp-btn');btn.disabled=true;
+  const reels=['r1','r2','r3'].map(id=>document.getElementById(id));
+  reels.forEach(r=>{r.classList.add('spin');r.classList.remove('win')});
+  document.getElementById('sm-res').textContent='';document.getElementById('sm-res').className='sm-res';
+  const finals=[];
+  reels.forEach((r,i)=>{
+    let t=0;const iv=setInterval(()=>{r.textContent=SYMS[Math.floor(Math.random()*SYMS.length)]},80);
+    setTimeout(()=>{clearInterval(iv);const s=SYMS[Math.floor(Math.random()*SYMS.length)];r.textContent=s;r.classList.remove('spin');finals[i]=s;if(finals.filter(Boolean).length===3)evalSpin(finals,reels,btn)},[480,780,1080][i]);
+  });
+}
+function evalSpin(s,reels,btn){
+  const res=document.getElementById('sm-res');let win=0,msg='';
+  if(s[0]===s[1]&&s[1]===s[2]){
+    if(s[0]==='💎'){win=slotBet*50;msg='💎 JACKPOT! THREE DIAMONDS!'}
+    else if(s[0]==='7️⃣'){win=slotBet*20;msg='7️⃣ THREE SEVENS! MEGA WIN!'}
+    else{win=slotBet*10;msg='🎉 THREE OF A KIND! YOU WIN!'}
+    reels.forEach(r=>r.classList.add('win'));
+  }else if(s[0]===s[1]||s[1]===s[2]||s[0]===s[2]){win=slotBet*2;msg='✨ Pair! You win!'}
+  else{msg='Try again! Better luck next spin 🙏'}
+  if(win>0){bal+=win;updBal();res.textContent=msg+' +₹'+f(win);res.className='sm-res sm-win';toast('🎉 Won ₹'+f(win)+'!')}
+  else{res.textContent=msg;res.className='sm-res sm-loss'}
+  document.getElementById('sm-b').textContent='₹'+f(bal);
+  btn.disabled=false;
+}
+
+// ── Wallet ──
+function pp(btn,t,v){btn.closest('.wform').querySelectorAll('.pb').forEach(b=>b.classList.remove('on'));btn.classList.add('on');document.getElementById(t==='d'?'di':'wi').value=v}
+function pm(card){card.closest('.meth-g').querySelectorAll('.mc').forEach(c=>c.classList.remove('on'));card.classList.add('on')}
+function addTx(t,amt,meth){
+  const list=document.getElementById('tx-list');const d=document.createElement('div');d.className='tx-item';
+  const isDep=t==='d';const now=new Date().toLocaleString('en-IN',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
+  d.innerHTML=`<div class="txl"><div class="tx-ico ${isDep?'txi-d':'txi-w'}">${isDep?'⬇️':'⬆️'}</div><div><div class="tx-n">${meth} ${isDep?'Deposit':'Withdrawal'}</div><div class="tx-d">${now}</div></div></div><div class="tx-a ${isDep?'ta-d':'ta-w'}">${isDep?'+':'-'}₹${f(amt)}</div>`;
+  list.prepend(d);
+}
+function doDep(){
+  const amt=parseInt(document.getElementById('di').value);
+  if(!amt||amt<100){toast('Minimum ₹100',true);return}
+  const mc=document.querySelector('#wallet .wform:first-of-type .mc.on');
+  const meth=mc?mc.querySelector('div:not(.mc-ico):not(.mc-pop)').textContent.trim():'UPI';
+  bal+=amt;updBal();addTx('d',amt,meth);toast('✅ ₹'+f(amt)+' deposited!');
+  document.getElementById('di').value='';
+  document.querySelector('#wallet .wform:first-of-type').querySelectorAll('.pb').forEach(b=>b.classList.remove('on'));
+}
+function doWit(){
+  const amt=parseInt(document.getElementById('wi').value);
+  if(!amt||amt<100){toast('Minimum ₹100',true);return}
+  if(amt>50000){toast('Max withdrawal ₹50,000 per transaction',true);return}
+  if(amt>bal){toast('Insufficient balance!',true);return}
+  const mc=document.querySelector('#wallet .wform:last-of-type .mc.on');
+  const meth=mc?mc.querySelector('div:not(.mc-ico):not(.mc-pop)').textContent.trim():'Bank Transfer';
+  bal-=amt;updBal();addTx('w',amt,meth);toast('✅ ₹'+f(amt)+' withdrawal requested!');
+  document.getElementById('wi').value='';
+  document.querySelector('#wallet .wform:last-of-type').querySelectorAll('.pb').forEach(b=>b.classList.remove('on'));
+}
+
+// ── Close modals on backdrop ──
+document.getElementById('sm-ov').addEventListener('click',function(e){if(e.target===this)closeSM()});
+document.getElementById('fp-ov').addEventListener('click',function(e){if(e.target===this)closeFP()});
+</script>
+</body>
+</html>
